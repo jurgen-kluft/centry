@@ -29,12 +29,6 @@
     <Item Src="target\xentry\outdir\xentry_*\xentry_*_${Platform}.lib" Dst="libs\" />
   </Content>
   
-  <Dependency Package="example_package_name">
-    <Group>com.virtuos.tnt</Group>
-    <Version>[1.0,)</Version>
-    <Type>Package</Type>
-  </Dependency>
-
   <Project Name="xentry" Group="Main" Language="C++" Location="source\main\cpp" Scope="Public">
     <ProjectFile>
 			<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -80,48 +74,7 @@
 			</Project>				
     </ProjectFile>
   </Project>
-  <Project Name="xentry_test" Group="UnitTest" Language="C++" Location="source\test\cpp" Scope="Private" DependsOn="xentry>
-    <ProjectFile>
-			<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-			  <PropertyGroup Label="Globals">
-			    <ProjectGuid>{1c914383-36a9-4670-adc9-33c55f0737e9}</ProjectGuid>
-			  </PropertyGroup>
-			  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DevDebug|Win32'" Label="Configuration">
-			    <ConfigurationType>Application</ConfigurationType>
-			  </PropertyGroup>
-			  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DevFinal|Win32'" Label="Configuration">
-			    <ConfigurationType>Application</ConfigurationType>
-			  </PropertyGroup>
-			  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DevRelease|Win32'" Label="Configuration">
-			    <ConfigurationType>Application</ConfigurationType>
-			  </PropertyGroup>
-			  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DevDebug|Win32'">
-			    <ClCompile>
-			      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			      <AdditionalIncludeDirectories>$(SolutionDir)source\test\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-					</ClCompile>
-				</ItemDefinitionGroup>
-			  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DevRelease|Win32'">
-			    <ClCompile>
-			      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			      <AdditionalIncludeDirectories>$(SolutionDir)source\test\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-					</ClCompile>
-				</ItemDefinitionGroup>
-			  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DevFinal|Win32'">
-			    <ClCompile>
-			      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-			      <AdditionalIncludeDirectories>$(SolutionDir)source\test\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-					</ClCompile>
-				</ItemDefinitionGroup>
-			  <ItemGroup>
-			    <ClCompile Include="source\test\cpp\**\*.cpp" />
-			  </ItemGroup>
-			  <ItemGroup>
-			    <ClInclude Include="source\test\include\**\*.h" />
-			  </ItemGroup>				
-			</Project>
-    </ProjectFile>
-  </Project>
+
 </Package>
 
 
