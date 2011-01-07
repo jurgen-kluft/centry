@@ -29,6 +29,12 @@
     <Item Src="target\xentry\outdir\xentry_*\xentry_*_${Platform}.lib" Dst="libs\" />
   </Content>
   
+  <Dependency Package="xbase">
+    <Group>com.virtuos.tnt</Group>
+    <Version>[1.0,)</Version>
+    <Type>Package</Type>
+  </Dependency>  
+  
   <Project Name="xentry" Group="Main" Language="C++" Location="source\main\cpp" Scope="Public">
     <ProjectFile>
 			<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
