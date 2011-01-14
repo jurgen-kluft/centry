@@ -41,6 +41,9 @@
 			  <PropertyGroup Label="Globals">
 			    <ProjectGuid>{8f6104a4-008c-44d8-a4b3-49369bb23050}</ProjectGuid>
 			  </PropertyGroup>
+			  <ImportGroup Label="TargetDirs">
+		  	  <Import Project="$(SolutionDir)target\xentry\xentry.$(Platform).props" Condition="exists('$(SolutionDir)target\xentry\xentry.$(Platform).props')" Label="xentry_TargetDir" />
+			  </ImportGroup>
 			  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DevDebug|Win32'">
 			    <ClCompile>
 			      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
