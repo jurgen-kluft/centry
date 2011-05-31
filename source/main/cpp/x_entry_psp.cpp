@@ -5,11 +5,6 @@
 // Includes
 //
 #include "xbase\x_types.h"
-#include "xbase\x_debug.h"
-#include "xbase\x_thread.h"
-#include "xbase\x_base.h"
-#include "xbase\x_console.h"
-#include "xbase\x_system.h"
 
 using namespace xcore;
 
