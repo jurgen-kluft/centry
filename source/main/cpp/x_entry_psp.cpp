@@ -8,7 +8,7 @@
 
 using namespace xcore;
 
-extern int AppMain(xcore::s32 argc, const char** argv);
+extern xcore::s32 AppMain(xcore::s32 argc, const char** argv);
 int main(int argc, char** argv)
 {
 	int retValue = 0;
