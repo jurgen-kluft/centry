@@ -22,6 +22,7 @@ UNITTEST_SUITE_BEGIN(entry)
 		{
 		}
 
+#ifdef TARGET_PC
 		UNITTEST_TEST(test_main)
 		{
 			int argc = 2;
@@ -55,6 +56,7 @@ UNITTEST_SUITE_BEGIN(entry)
 			bool isWinApp = xcore::x_GetWinParams(wp);
 			CHECK_TRUE(isWinApp);
 		}
+#endif
 	}
 }
 UNITTEST_SUITE_END

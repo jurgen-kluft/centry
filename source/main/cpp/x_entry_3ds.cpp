@@ -14,6 +14,8 @@ void nnMain( void )
 {
 	nn::os::Initialize();
     nn::fs::Initialize();
+	xcore::s32 argc = 1;
+	const char* argv[] = { "main" };
 	AppMain(argc, (const char**)argv);
 }
 
