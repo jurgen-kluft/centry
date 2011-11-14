@@ -82,7 +82,7 @@ namespace xentry
 		mCmdLine = (char*)malloc(cmdLineLen);
 		x_strcpy(mCmdLine, cmdLineLen, lpCmdLine);
 
-		// parse the arguments
+		/// parse the arguments
 		char** argv = (char**)malloc(argc * sizeof(char*));
 
 		arg = mCmdLine;
