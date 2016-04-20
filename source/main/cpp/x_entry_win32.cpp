@@ -1,12 +1,8 @@
 //==============================================================================
 // INCLUDES
 //==============================================================================
-#include "xbase\x_target.h"
 #ifdef TARGET_PC
 #include <windows.h>
-
-#include "xbase\x_types.h"
-#include "xbase\x_string_std.h"
 
 #include "xentry\x_entry.h"
 
@@ -25,7 +21,7 @@ static x_WinParams	sWinParams;
 
 //---------------------------------------------------------------------------
 
-extern xcore::s32 AppMain(xcore::s32 argc, const char** argv);
+extern int AppMain(int argc, const char** argv);
 
 
 //---------------------------------------------------------------------------
@@ -79,8 +75,7 @@ namespace xentry
 		}    
 
 		int const cmdLineLen = arg - lpCmdLine;
-		mCmdLine = (char*)malloc(cmdLineLen);
-		x_strcpy(mCmdLine, cmdLineLen, lpCmdLine);
+		mCmdLine = (char*)lpCmdLine;
 
 		/// parse the arguments
 		char** argv = (char**)malloc(argc * sizeof(char*));

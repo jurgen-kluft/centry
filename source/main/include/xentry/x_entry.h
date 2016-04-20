@@ -3,12 +3,9 @@
  */
 #ifndef __XENTRY_ENTRY_H__
 #define __XENTRY_ENTRY_H__
-#include "xbase\x_target.h"
 #ifdef USE_PRAGMA_ONCE 
 #pragma once 
 #endif
-
-#include "xbase\x_types.h"
 
 /**
  * xCore namespace
