@@ -3,12 +3,11 @@
  */
 #ifndef __XENTRY_ENTRY_H__
 #define __XENTRY_ENTRY_H__
-#include "xbase\x_target.h"
-#ifdef USE_PRAGMA_ONCE 
-#pragma once 
+
+#ifdef USE_PRAGMA_ONCE
+#pragma once
 #endif
 
-#include "xbase\x_types.h"
 
 /**
  * xCore namespace
@@ -16,7 +15,7 @@
 namespace xcore
 {
 #ifdef TARGET_PC
-	struct x_WinParams
+	struct WinParams
 	{
 		void*		hInstance;
 		void*		hPrevInstance;
@@ -26,7 +25,7 @@ namespace xcore
 
 	///< Returns True when the applications is a Win32 Windows application
 	///< Returns False if the application is a Win32 Console application
-	extern bool		x_GetWinParams(x_WinParams& outParams);
+	extern bool		GetWinParams(WinParams& outParams);
 #endif
 };
 

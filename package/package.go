@@ -12,6 +12,7 @@ func GetPackage() *denv.Package {
 
 	// 'xentry' library
 	mainlib := denv.SetupDefaultCppLibProject("xentry", "github.com\\jurgen-kluft\\xentry")
+
 	mainpkg.AddMainLib(mainlib)
 
 	return mainpkg

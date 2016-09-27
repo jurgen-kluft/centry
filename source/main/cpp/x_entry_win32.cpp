@@ -1,19 +1,12 @@
 //==============================================================================
 // INCLUDES
 //==============================================================================
-#include "xbase\x_target.h"
 #ifdef TARGET_PC
 #include <windows.h>
-
-#include "xbase\x_types.h"
-#include "xbase\x_string_std.h"
-
 #include "xentry\x_entry.h"
 
-using namespace xcore;
-
 static bool	sIsWinApp = false;
-static x_WinParams	sWinParams;
+static xcore::WinParams	sWinParams;
 
 #ifdef TARGET_TEST
 #define xWinMain		WinMain2
@@ -25,7 +18,7 @@ static x_WinParams	sWinParams;
 
 //---------------------------------------------------------------------------
 
-extern xcore::s32 AppMain(xcore::s32 argc, const char** argv);
+extern int AppMain(int argc, const char** argv);
 
 
 //---------------------------------------------------------------------------
@@ -48,7 +41,7 @@ namespace xentry
 
 	//---------------------------------------------------------------------------
 
-	struct x_WinCmdLine
+	struct WinCmdLine
 	{
 		char*			mCmdLine;
 		int				mArgC;
@@ -59,7 +52,7 @@ namespace xentry
 		void			Destroy();
 	};
 
-	void x_WinCmdLine::Parse(LPSTR lpCmdLine)
+	void WinCmdLine::Parse(LPSTR lpCmdLine)
 	{
 		// count the arguments
 		int argc = 1;
@@ -76,11 +69,10 @@ namespace xentry
 				while (arg[0] != 0 && arg[0] != ' ')
 					arg++;
 			}
-		}    
+		}
 
 		int const cmdLineLen = arg - lpCmdLine;
-		mCmdLine = (char*)malloc(cmdLineLen);
-		x_strcpy(mCmdLine, cmdLineLen, lpCmdLine);
+		mCmdLine = (char*)lpCmdLine;
 
 		/// parse the arguments
 		char** argv = (char**)malloc(argc * sizeof(char*));
@@ -103,7 +95,7 @@ namespace xentry
 
 				if (arg[0] != 0)
 				{
-					arg[0] = 0;    
+					arg[0] = 0;
 					arg++;
 				}
 			}
@@ -117,7 +109,7 @@ namespace xentry
 		argv[0] = mFilename;
 	}
 
-	void x_WinCmdLine::Destroy()
+	void WinCmdLine::Destroy()
 	{
 		free(mCmdLine);
 		free(mArgV);
@@ -133,7 +125,7 @@ INT WINAPI xWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	sWinParams.lpCmdLine = lpCmdLine;
 	sWinParams.nCmdShow = nCmdShow;
 
-	xentry::x_WinCmdLine arg;
+	xentry::WinCmdLine arg;
 	arg.Parse(lpCmdLine);
 	int r = AppMain(arg.mArgC, arg.mArgV);
 	arg.Destroy();
@@ -142,7 +134,7 @@ INT WINAPI xWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
 namespace xcore
 {
-	bool		x_GetWinParams(x_WinParams& outParams)
+	bool		GetWinParams(WinParams& outParams)
 	{
 		outParams = sWinParams;
 		return sIsWinApp;
