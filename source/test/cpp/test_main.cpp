@@ -1,9 +1,9 @@
-#include "xbase\x_target.h"
-#include "xbase\x_types.h"
-#include "xbase\x_allocator.h"
-#include "xunittest\xunittest.h"
+#include "xbase/x_target.h"
+#include "xbase/x_types.h"
+#include "xbase/x_allocator.h"
+#include "xunittest/xunittest.h"
 
-#include "xentry\x_entry.h"
+#include "xentry/x_entry.h"
 
 UNITTEST_SUITE_LIST(xEntryUnitTest);
 UNITTEST_SUITE_DECLARE(xEntryUnitTest, entry);

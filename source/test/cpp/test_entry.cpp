@@ -1,8 +1,8 @@
-#include "xbase\x_types.h"
-#include "xunittest\xunittest.h"
+#include "xbase/x_types.h"
+#include "xunittest/xunittest.h"
 
-#include "xentry\x_entry.h"
-#include "xentry\x_entry_calls.h"
+#include "xentry/x_entry.h"
+#include "xentry/x_entry_calls.h"
 
 xcore::s32 AppMain(xcore::s32 argc, const char** argv)
 {
