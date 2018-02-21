@@ -3,7 +3,7 @@
 //==============================================================================
 #ifdef TARGET_PC
 #include <windows.h>
-#include "xentry\x_entry.h"
+#include "xentry/x_entry.h"
 
 static bool	sIsWinApp = false;
 static xcore::WinParams	sWinParams;
