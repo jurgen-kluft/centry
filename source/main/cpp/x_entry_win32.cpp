@@ -71,7 +71,7 @@ namespace xentry
 			}
 		}
 
-		int const cmdLineLen = arg - lpCmdLine;
+		int const cmdLineLen = (int)(arg - lpCmdLine);
 		mCmdLine = (char*)lpCmdLine;
 
 		/// parse the arguments
@@ -80,7 +80,7 @@ namespace xentry
 		arg = mCmdLine;
 		int index = 1;
 
-		while (arg[0] != 0)
+		while (argv != NULL && arg[0] != 0 && index < argc)
 		{
 			while (arg[0] != 0 && arg[0] == ' ')
 				arg++;
@@ -104,9 +104,11 @@ namespace xentry
 		mArgC = argc;
 		mArgV = (const char**)argv;
 
-		// put the program name into argv[0]
-		GetModuleFileName(NULL, mFilename, _MAX_PATH);
-		argv[0] = mFilename;
+		if (mArgV != NULL)
+		{	// put the program name into argv[0]
+			GetModuleFileName(NULL, mFilename, _MAX_PATH);
+			mArgV[0] = mFilename;
+		}
 	}
 
 	void WinCmdLine::Destroy()
