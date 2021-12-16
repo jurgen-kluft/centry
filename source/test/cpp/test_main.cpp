@@ -1,6 +1,9 @@
 #include "xbase/x_target.h"
-#include "xbase/x_types.h"
 #include "xbase/x_allocator.h"
+#include "xbase/x_debug.h"
+#include "xbase/x_console.h"
+#include "xbase/x_context.h"
+
 #include "xunittest/xunittest.h"
 
 #include "xentry/x_entry.h"
@@ -10,96 +13,96 @@ UNITTEST_SUITE_DECLARE(xEntryUnitTest, entry);
 
 namespace xcore
 {
-	class TestHeapAllocator : public x_iallocator
+	class UnitTestAssertHandler : public xcore::asserthandler_t
 	{
 	public:
-		TestHeapAllocator(xcore::x_iallocator* allocator)
-			: mAllocator(allocator)
-			, mNumAllocations(0)
+		UnitTestAssertHandler()
 		{
+			NumberOfAsserts = 0;
 		}
 
-		xcore::x_iallocator*	mAllocator;
-		s32						mNumAllocations;
-
-		virtual const char*	name() const
+		virtual bool	handle_assert(u32& flags, const char* fileName, s32 lineNumber, const char* exprString, const char* messageString)
 		{
-			return "xentry unittest test heap allocator";
+			UnitTest::reportAssert(exprString, fileName, lineNumber);
+			NumberOfAsserts++;
+			return false;
 		}
 
-		virtual void*		allocate(u32 size, u32 alignment)
+		xcore::s32		NumberOfAsserts;
+	};
+
+	class UnitTestAllocator : public UnitTest::Allocator
+	{
+		alloc_t*			mAllocator;
+	public:
+						UnitTestAllocator(alloc_t* allocator)				{ mAllocator = allocator; }
+		virtual void*	Allocate(size_t size)								{ return mAllocator->allocate((u32)size, 4); }
+		virtual size_t	Deallocate(void* ptr)								{ return mAllocator->deallocate(ptr); }
+	};
+
+	class TestAllocator : public alloc_t
+	{
+		alloc_t*				mAllocator;
+	public:
+							TestAllocator(alloc_t* allocator) : mAllocator(allocator) { }
+
+		virtual const char*	name() const										{ return "xcore unittest test heap allocator"; }
+
+		virtual void*		v_allocate(u32 size, u32 alignment)
 		{
-			++mNumAllocations;
+			UnitTest::IncNumAllocations();
 			return mAllocator->allocate(size, alignment);
 		}
 
-		virtual void*		reallocate(void* mem, u32 size, u32 alignment)
+		virtual u32 		v_deallocate(void* mem)
 		{
-			return mAllocator->reallocate(mem, size, alignment);
+			UnitTest::DecNumAllocations();
+			return mAllocator->deallocate(mem);
 		}
 
-		virtual void		deallocate(void* mem)
+		virtual void		v_release()
 		{
-			--mNumAllocations;
-			mAllocator->deallocate(mem);
-		}
-
-		virtual void		release()
-		{
+			mAllocator = NULL;
 		}
 	};
 }
 
-class UnitTestAllocator : public UnitTest::Allocator
-{
-public:
-	xcore::x_iallocator*	mAllocator;
-	int						mNumAllocations;
-
-	UnitTestAllocator(xcore::x_iallocator* allocator)
-		: mNumAllocations(0)
-	{
-		mAllocator = allocator;
-	}
-
-	virtual void*	Allocate(int size)
-	{
-		++mNumAllocations;
-		return mAllocator->allocate(size, 4);
-	}
-	virtual void	Deallocate(void* ptr)
-	{
-		--mNumAllocations;
-		mAllocator->deallocate(ptr);
-	}
-};
-
-xcore::x_iallocator* gSystemAllocator = NULL;
+xcore::alloc_t *gTestAllocator = NULL;
+xcore::UnitTestAssertHandler gAssertHandler;
 
 bool gRunUnitTest(UnitTest::TestReporter& reporter)
 {
-	gSystemAllocator = xcore::gCreateSystemAllocator();
-	UnitTestAllocator unittestAllocator( gSystemAllocator );
+	xbase::init();
+
+#ifdef TARGET_DEBUG
+	xcore::context_t::set_assert_handler(&gAssertHandler);
+#endif
+	xcore::console->write("Configuration: ");
+	xcore::console->setColor(xcore::console_t::YELLOW);
+	xcore::console->writeLine(TARGET_FULL_DESCR_STR);
+	xcore::console->setColor(xcore::console_t::NORMAL);
+
+	xcore::alloc_t* systemAllocator = xcore::context_t::system_alloc();
+	xcore::UnitTestAllocator unittestAllocator( systemAllocator );
 	UnitTest::SetAllocator(&unittestAllocator);
 
-	xcore::TestHeapAllocator libHeapAllocator(gSystemAllocator);
+	xcore::TestAllocator testAllocator(systemAllocator);
+	gTestAllocator = &testAllocator;
+	xcore::context_t::set_system_alloc(&testAllocator);
 	
 	int r = UNITTEST_SUITE_RUN(reporter, xEntryUnitTest);
-	if (unittestAllocator.mNumAllocations!=0)
+	if (UnitTest::GetNumAllocations()!=0)
 	{
 		reporter.reportFailure(__FILE__, __LINE__, "xunittest", "memory leaks detected!");
 		r = -1;
 	}
-	if (libHeapAllocator.mNumAllocations!=0)
-	{
-		reporter.reportFailure(__FILE__, __LINE__, "xentry", "memory leaks detected!");
-		r = -1;
-	}
+
+	gTestAllocator->release();
 
 	UnitTest::SetAllocator(NULL);
-	gSystemAllocator->release();
-	gSystemAllocator = NULL;
+	xcore::context_t::set_system_alloc(systemAllocator);
 
+	xbase::exit();
 	return r==0;
 }
 
