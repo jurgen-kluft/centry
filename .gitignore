@@ -4,6 +4,8 @@ vendor/
 tags
 
 #except the following files
+!.gitignore
+!.clang-format
 !*.cpp
 !*.hpp
 !*.c
@@ -13,6 +15,7 @@ tags
 !*.pl
 
 !*.go
+!*.lua
 
 !*.cs
 !*.csproj
