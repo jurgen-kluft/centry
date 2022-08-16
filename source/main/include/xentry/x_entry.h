@@ -11,7 +11,7 @@
 /**
  * xCore namespace
  */
-namespace xcore
+namespace ncore
 {
 #ifdef TARGET_PC
 	struct WinParams

@@ -4,7 +4,7 @@
 #include "xentry/x_entry.h"
 #include "xentry/x_entry_calls.h"
 
-xcore::s32 AppMain(xcore::s32 argc, const char** argv)
+ncore::s32 AppMain(ncore::s32 argc, const char** argv)
 {
 
 	return argc;
@@ -34,8 +34,8 @@ UNITTEST_SUITE_BEGIN(entry)
 			int r = main2(argc, (char**)argv);
 			CHECK_EQUAL(r, argc);
 
-			xcore::x_WinParams wp;
-			bool isWinApp = xcore::x_GetWinParams(wp);
+			ncore::x_WinParams wp;
+			bool isWinApp = ncore::x_GetWinParams(wp);
 			CHECK_FALSE(isWinApp);
 		}
 
@@ -52,8 +52,8 @@ UNITTEST_SUITE_BEGIN(entry)
 			int r = WinMain2((HINSTANCE)1, (HINSTANCE)2, cmdLine, 1);
 			CHECK_EQUAL(argc, r);
 
-			xcore::x_WinParams wp;
-			bool isWinApp = xcore::x_GetWinParams(wp);
+			ncore::x_WinParams wp;
+			bool isWinApp = ncore::x_GetWinParams(wp);
 			CHECK_TRUE(isWinApp);
 		}
 #endif
