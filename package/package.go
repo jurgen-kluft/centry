@@ -1,17 +1,17 @@
-package xentry
+package centry
 
 import (
-	"github.com/jurgen-kluft/xcode/denv"
+	"github.com/jurgen-kluft/ccode/denv"
 )
 
 // GetPackage returns the package object of 'xentry'
 func GetPackage() *denv.Package {
 
 	// The main (xentry) package
-	mainpkg := denv.NewPackage("xentry")
+	mainpkg := denv.NewPackage("centry")
 
 	// 'xentry' library
-	mainlib := denv.SetupDefaultCppLibProject("xentry", "github.com\\jurgen-kluft\\xentry")
+	mainlib := denv.SetupDefaultCppLibProject("centry", "github.com\\jurgen-kluft\\centry")
 
 	mainpkg.AddMainLib(mainlib)
 

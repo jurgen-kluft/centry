@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/jurgen-kluft/xcode"
-	"github.com/jurgen-kluft/xentry/package"
+	"github.com/jurgen-kluft/ccode"
+	centry "github.com/jurgen-kluft/centry/package"
 )
 
 func main() {
-	xcode.Generate(xentry.GetPackage())
+	ccode.Generate(centry.GetPackage())
 }
