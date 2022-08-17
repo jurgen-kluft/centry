@@ -1,6 +1,3 @@
-/**
- *  x_entry.h
- */
 #ifndef __XENTRY_ENTRY_H__
 #define __XENTRY_ENTRY_H__
 
@@ -11,7 +8,7 @@
 /**
  * xCore namespace
  */
-namespace xcore
+namespace ncore
 {
 #ifdef TARGET_PC
 	struct WinParams

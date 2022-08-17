@@ -1,6 +1,6 @@
 #ifdef TARGET_MAC
 
-#include "xentry/x_entry.h"
+#include "xentry/c_entry.h"
 
 #ifdef TARGET_TEST
 #define xMain			main2
@@ -19,5 +19,6 @@ int xMain(int argc, char** argv)
 {
 	return AppMain(argc, (const char**)argv);
 }
+
 
 #endif

@@ -1,12 +1,9 @@
-//==============================================================================
-// INCLUDES
-//==============================================================================
 #ifdef TARGET_PC
 #include <windows.h>
 #include "xentry/x_entry.h"
 
 static bool	sIsWinApp = false;
-static xcore::WinParams	sWinParams;
+static ncore::WinParams	sWinParams;
 
 #ifdef TARGET_TEST
 #define xWinMain		WinMain2
@@ -27,9 +24,9 @@ int xMain(int argc, char** argv)
 {
 	sIsWinApp = false;
 
-	sWinParams.hInstance = NULL;
-	sWinParams.hPrevInstance = NULL;
-	sWinParams.lpCmdLine = NULL;
+	sWinParams.hInstance = nullptr;
+	sWinParams.hPrevInstance = nullptr;
+	sWinParams.lpCmdLine = nullptr;
 	sWinParams.nCmdShow = 0;
 
 	return AppMain(argc, (const char**)argv);
@@ -80,7 +77,7 @@ namespace xentry
 		arg = mCmdLine;
 		int index = 1;
 
-		while (argv != NULL && arg[0] != 0 && index < argc)
+		while (argv != nullptr && arg[0] != 0 && index < argc)
 		{
 			while (arg[0] != 0 && arg[0] == ' ')
 				arg++;
@@ -104,9 +101,9 @@ namespace xentry
 		mArgC = argc;
 		mArgV = (const char**)argv;
 
-		if (mArgV != NULL)
+		if (mArgV != nullptr)
 		{	// put the program name into argv[0]
-			GetModuleFileName(NULL, mFilename, _MAX_PATH);
+			GetModuleFileName(nullptr, mFilename, _MAX_PATH);
 			mArgV[0] = mFilename;
 		}
 	}
@@ -134,7 +131,7 @@ INT WINAPI xWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	return r;
 }
 
-namespace xcore
+namespace ncore
 {
 	bool		GetWinParams(WinParams& outParams)
 	{
