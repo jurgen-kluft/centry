@@ -1,7 +1,7 @@
-#include "xbase/x_types.h"
-#include "xbase/x_allocator.h"
+#include "cbase/x_types.h"
+#include "cbase/x_allocator.h"
 
-#include "xunittest/xunittest.h"
+#include "cunittest/cunittest.h"
 
 using namespace ncore;
 

@@ -1,6 +1,6 @@
 #ifdef TARGET_PC
 #include <windows.h>
-#include "xentry/x_entry.h"
+#include "centry/x_entry.h"
 
 static bool	sIsWinApp = false;
 static ncore::WinParams	sWinParams;
@@ -33,7 +33,7 @@ int xMain(int argc, char** argv)
 }
 
 
-namespace xentry
+namespace centry
 {
 
 	//---------------------------------------------------------------------------
@@ -124,7 +124,7 @@ INT WINAPI xWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	sWinParams.lpCmdLine = lpCmdLine;
 	sWinParams.nCmdShow = nCmdShow;
 
-	xentry::WinCmdLine arg;
+	centry::WinCmdLine arg;
 	arg.Parse(lpCmdLine);
 	int r = AppMain(arg.mArgC, arg.mArgV);
 	arg.Destroy();

@@ -1,6 +1,6 @@
 #ifdef TARGET_MAC
 
-#include "xentry/x_entry.h"
+#include "centry/x_entry.h"
 
 #ifdef TARGET_TEST
 #define xMain			main2
