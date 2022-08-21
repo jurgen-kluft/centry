@@ -1,12 +1,12 @@
-#include "cbase/x_target.h"
-#include "cbase/x_allocator.h"
-#include "cbase/x_debug.h"
-#include "cbase/x_console.h"
-#include "cbase/x_context.h"
+#include "cbase/c_target.h"
+#include "cbase/c_allocator.h"
+#include "cbase/c_debug.h"
+#include "cbase/c_console.h"
+#include "cbase/c_context.h"
 
 #include "cunittest/cunittest.h"
 
-#include "centry/x_entry.h"
+#include "centry/c_entry.h"
 
 UNITTEST_SUITE_LIST(xEntryUnitTest);
 UNITTEST_SUITE_DECLARE(xEntryUnitTest, entry);

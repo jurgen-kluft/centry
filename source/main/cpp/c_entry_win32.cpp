@@ -1,6 +1,6 @@
 #ifdef TARGET_PC
 #include <windows.h>
-#include "centry/x_entry.h"
+#include "centry/c_entry.h"
 
 static bool	sIsWinApp = false;
 static ncore::WinParams	sWinParams;

@@ -1,5 +1,5 @@
-#ifndef __XENTRY_ENTRY_H__
-#define __XENTRY_ENTRY_H__
+#ifndef __CENTRY_ENTRY_H__
+#define __CENTRY_ENTRY_H__
 
 #ifdef USE_PRAGMA_ONCE
 #pragma once
@@ -25,4 +25,4 @@ namespace ncore
 #endif
 };
 
-#endif	/// __XENTRY_ENTRY_H__
+#endif	/// __CENTRY_ENTRY_H__
