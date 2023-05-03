@@ -6,11 +6,11 @@ static bool	sIsWinApp = false;
 static ncore::WinParams	sWinParams;
 
 #ifdef TARGET_TEST
-#define xWinMain		WinMain2
-#define xMain			main2
+#define WinEntryMain		WinMain2
+#define EntryMain			main2
 #else
-#define xWinMain		WinMain
-#define xMain			main
+#define WinEntryMain		WinMain
+#define EntryMain			main
 #endif
 
 //---------------------------------------------------------------------------
@@ -20,7 +20,7 @@ extern int AppMain(int argc, const char** argv);
 
 //---------------------------------------------------------------------------
 
-int xMain(int argc, char** argv)
+int EntryMain(int argc, char** argv)
 {
 	sIsWinApp = false;
 
@@ -115,7 +115,7 @@ namespace centry
 	}
 }
 
-INT WINAPI xWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+INT WINAPI WinEntryMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	sIsWinApp = true;
 

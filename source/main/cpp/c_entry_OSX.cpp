@@ -3,9 +3,9 @@
 #include "centry/c_entry.h"
 
 #ifdef TARGET_TEST
-#define xMain			main2
+#define EntryMain			main2
 #else
-#define xMain			main
+#define EntryMain			main
 #endif
 
 //---------------------------------------------------------------------------
@@ -15,7 +15,7 @@ extern int AppMain(int argc, const char** argv);
 
 //---------------------------------------------------------------------------
 
-int xMain(int argc, char** argv)
+int EntryMain(int argc, char** argv)
 {
 	return AppMain(argc, (const char**)argv);
 }
