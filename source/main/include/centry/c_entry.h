@@ -6,7 +6,7 @@
 #endif
 
 /**
- * xCore namespace
+ * ccore namespace
  */
 namespace ncore
 {
