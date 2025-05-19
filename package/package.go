@@ -11,7 +11,7 @@ func GetPackage() *denv.Package {
 	mainpkg := denv.NewPackage("centry")
 
 	// 'centry' library
-	mainlib := denv.SetupDefaultCppLibProject("centry", "github.com\\jurgen-kluft\\centry")
+	mainlib := denv.SetupCppLibProject("centry", "github.com\\jurgen-kluft\\centry")
 
 	mainpkg.AddMainLib(mainlib)
 
