@@ -8,10 +8,10 @@ import (
 func GetPackage() *denv.Package {
 
 	// The main (centry) package
-	mainpkg := denv.NewPackage("centry")
+	mainpkg := denv.NewPackage("github.com\\jurgen-kluft", "centry")
 
 	// 'centry' library
-	mainlib := denv.SetupCppLibProject("centry", "github.com\\jurgen-kluft\\centry")
+	mainlib := denv.SetupCppLibProject(mainpkg, "centry")
 
 	mainpkg.AddMainLib(mainlib)
 
