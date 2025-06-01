@@ -4,16 +4,21 @@ import (
 	"github.com/jurgen-kluft/ccode/denv"
 )
 
+const (
+	repo_path = "github.com\\jurgen-kluft"
+	repo_name = "centry"
+)
+
 // GetPackage returns the package object of 'centry'
 func GetPackage() *denv.Package {
+	name := repo_name
 
-	// The main (centry) package
-	mainpkg := denv.NewPackage("github.com\\jurgen-kluft", "centry")
+	// main package
+	mainpkg := denv.NewPackage(repo_path, repo_name)
 
-	// 'centry' library
-	mainlib := denv.SetupCppLibProject(mainpkg, "centry")
+	// main library
+	mainlib := denv.SetupCppLibProject(mainpkg, name)
 
 	mainpkg.AddMainLib(mainlib)
-
 	return mainpkg
 }
